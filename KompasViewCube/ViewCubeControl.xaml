@@ -1,0 +1,129 @@
+<UserControl x:Class="KompasViewCube.ViewCubeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.Resources>
+        <Style x:Key="RollButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Width"
+                    Value="34"/>
+
+            <Setter Property="Height"
+                    Value="34"/>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="Background"
+                    Value="Transparent"/>
+
+            <Setter Property="Foreground"
+                    Value="#69727A"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent">
+
+                            <Ellipse x:Name="HoverCircle"
+                                     Width="32"
+                                     Height="32"
+                                     Fill="Transparent"/>
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="HoverCircle"
+                                        Property="Fill"
+                                        Value="#26FF8A00"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter TargetName="HoverCircle"
+                                        Property="Fill"
+                                        Value="#46FF8A00"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </UserControl.Resources>
+
+    <Viewbox Stretch="Uniform">
+    <Grid Width="266" Height="266" Background="Transparent">
+
+        <Viewport3D x:Name="CubeViewport"
+                    Margin="18"
+                    MouseMove="CubeViewport_MouseMove"
+                    MouseLeave="CubeViewport_MouseLeave"
+                    MouseLeftButtonDown="CubeViewport_MouseLeftButtonDown">
+
+            <Viewport3D.Camera>
+                <OrthographicCamera x:Name="CubeCamera"
+                                    Position="0,-6,0"
+                                    LookDirection="0,6,0"
+                                    UpDirection="0,0,1"
+                                    Width="3.70"/>
+            </Viewport3D.Camera>
+
+            <!-- Только равномерный матовый свет -->
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <AmbientLight Color="#FFFFFF"/>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+
+            <ModelVisual3D x:Name="CubeVisual"/>
+
+        </Viewport3D>
+
+
+        <!-- Original WPF vector controls: orbit at four sides, roll on the upper arc. -->
+        <Button x:Name="RollLeftButton" Style="{StaticResource RollButtonStyle}"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="52,8,0,0"
+                Click="RollLeft_Click">
+            <Path Data="M 22,4 C 11,4 4,10 4,21 M 1,15 L 4,22 L 11,19"
+                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                  StrokeThickness="2.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+        </Button>
+        <Button x:Name="RollRightButton" Style="{StaticResource RollButtonStyle}"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,52,0"
+                Click="RollRight_Click">
+            <Path Data="M 2,4 C 13,4 20,10 20,21 M 13,19 L 20,22 L 23,15"
+                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                  StrokeThickness="2.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+        </Button>
+        <Button Style="{StaticResource RollButtonStyle}" HorizontalAlignment="Center"
+                VerticalAlignment="Top" Margin="0,0,0,0" Tag="Up" Click="Orbit_Click" ToolTip="Вращать вверх">
+            <Path Data="M 0,8 L 7,0 L 14,8 Z" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        </Button>
+        <Button Style="{StaticResource RollButtonStyle}" HorizontalAlignment="Center"
+                VerticalAlignment="Bottom" Tag="Down" Click="Orbit_Click" ToolTip="Вращать вниз">
+            <Path Data="M 0,0 L 7,8 L 14,0 Z" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        </Button>
+        <Button Style="{StaticResource RollButtonStyle}" HorizontalAlignment="Left"
+                VerticalAlignment="Center" Tag="Left" Click="Orbit_Click" ToolTip="Вращать влево">
+            <Path Data="M 8,0 L 0,7 L 8,14 Z" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        </Button>
+        <Button Style="{StaticResource RollButtonStyle}" HorizontalAlignment="Right"
+                VerticalAlignment="Center" Tag="Right" Click="Orbit_Click" ToolTip="Вращать вправо">
+            <Path Data="M 0,0 L 8,7 L 0,14 Z" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        </Button>
+    </Grid>
+    </Viewbox>
+</UserControl>

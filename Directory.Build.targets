@@ -1,0 +1,5 @@
+<Project>
+  <Target Name="CheckViewCubeSigningKey" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(ViewCubeSigningKey)')" Text="Signing key missing. Run scripts/Create-DeveloperKey.ps1 or pass /p:ViewCubeSigningKey=absolute-path-to-private-release-key." />
+  </Target>
+</Project>

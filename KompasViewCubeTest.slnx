@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="KompasViewCube.Plugin/KompasViewCube.Plugin.csproj" Id="22335ab5-3336-46fd-b457-b93113b62a22" />
+  <Project Path="KompasViewCube/KompasViewCube.csproj" Id="bcf72286-111b-4131-89ec-f2a361e9ae66" />
+</Solution>

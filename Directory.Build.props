@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <ViewCubeSigningKey Condition="'$(ViewCubeSigningKey)' == ''">$(MSBuildThisFileDirectory).keys\developer.snk</ViewCubeSigningKey>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+  </PropertyGroup>
+</Project>

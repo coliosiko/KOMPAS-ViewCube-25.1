@@ -1,0 +1,13 @@
+﻿<Window x:Class="KompasViewCube.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KOMPAS ViewCube"
+        Width="266"
+        Height="266"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="ViewCubeHost"
+          Background="#F3F3F3"/>
+
+</Window>
